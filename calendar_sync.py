@@ -71,12 +71,20 @@ def combine_date_and_time(order):
             request_from = dt.combine(parse_datetime(order["RequestFromDate"]).date(), time.min)
             request_to = dt.combine(parse_datetime(order["RequestToDate"]).date(), time.min) + timedelta(days=1)
             is_all_day = True
-        # If only the RequestToTime is missing, assume the event ends at 5:00 PM
-        elif order.get("RequestToTime") is None and isinstance(order.get("RequestFromTime"), str):
-            print(f"Order {order['ServiceOrderId']} has missing end time. Assuming it ends at 5:00pm.")
-            request_from = dt.combine(parse_datetime(order["RequestFromDate"]).date(),
-                                    parse_datetime(order["RequestFromTime"]).time())
-            request_to = dt.combine(parse_datetime(order["RequestFromDate"]).date(), time(17, 0))
+        # Use defualt times if only one of the times is missing
+        else:
+            default_start_time = time(7, 0)  # Default start time is 7:00 AM
+            default_end_time = time(17, 0)  # Default end time is 5:00 PM
+
+            start_time_str = order.get("RequestFromTime")
+            end_time_str = order.get("RequestToTime")
+
+            start_time = parse_datetime(start_time_str).time() if start_time_str else default_start_time
+            end_time = parse_datetime(end_time_str).time() if end_time_str else default_end_time
+
+            request_from = dt.combine(parse_datetime(order["RequestFromDate"]).date(), start_time)
+            request_to = dt.combine(parse_datetime(order["RequestToDate"]).date(), end_time)
+            
             is_all_day = False
     else:
         missing_values = [field for field in required_fields if not order.get(field)]
