@@ -3,22 +3,21 @@ from datetime import datetime as dt
 from datetime import time, timedelta
 import os
 import traceback
-import json
 
 import app.exceptions as ex
 import app.outlook as ol
 import app.qualer_api as q
 
-# Change the current working directory
-new_directory = "C:\Qualer_Outlook_Calendar_Sync"
+# Change the current working directory to the location of this file
+new_directory = os.path.dirname(os.path.abspath(__file__))
 os.chdir(new_directory)
 
 ##########################################################################################################
 ########################################### Initial Variables ############################################
 ##########################################################################################################
 
-LIVE = True # Set to True to run the script in live mode, False to run in test mode
-LOG = True # Set to True to enable logging, False to disable logging
+LIVE = True  # Set to True to run the script in live mode, False to run in test mode
+LOG = True  # Set to True to enable logging, False to disable logging
 
 # Initialize counters for success and failure
 created_counter = 0
@@ -39,9 +38,11 @@ work_order_numbers = []
 ########################################## Function Definitions ##########################################
 ##########################################################################################################
 
+
 # Function that parses datetimes for combine_date_and_time()
 def parse_datetime(datetime_str):
     return dt.strptime(datetime_str, "%Y-%m-%dT%H:%M:%S")
+
 
 # Function to combine date and time for an order. If dates are missing, raises an exception. If times are both missing, assumes all day event.
 def combine_date_and_time(order):
@@ -62,7 +63,7 @@ def combine_date_and_time(order):
                 print("https://jgiquality.qualer.com/ServiceOrder/Info/" + str(order["ServiceOrderId"]))
             else:
                 raise Exception("Order ends before it starts. Make manual corrections on Qualer: https://jgiquality.qualer.com/ServiceOrder/Info/" + order["ServiceOrderId"])
-            
+
     # If the dates are present, check which of the times are missing
     elif all(isinstance(order.get(field), str) for field in required_fields[2:]):
         # If both times are missing, assume the event is all day
@@ -84,7 +85,7 @@ def combine_date_and_time(order):
 
             request_from = dt.combine(parse_datetime(order["RequestFromDate"]).date(), start_time)
             request_to = dt.combine(parse_datetime(order["RequestToDate"]).date(), end_time)
-            
+
             is_all_day = False
     else:
         missing_values = [field for field in required_fields if not order.get(field)]
@@ -92,71 +93,68 @@ def combine_date_and_time(order):
 
     return request_from, request_to, is_all_day
 
+
 # Function to prepare event data as json for an order
 def prepare_event_as_json(order):
     assignees = []  # Initialize list of assignees
-    try:
-        service_order_id = order["ServiceOrderId"]
-        custom_order_number = order["CustomOrderNumber"]
-        order_status = order["OrderStatus"]
-        address = order["ShippingAddress"]
-        address_str = f"{address['Address1']}, {address['City']}, {address['StateProvinceAbbreviation']} {address['ZipPostalCode']}"
-        start_time, end_time, is_all_day = combine_date_and_time(order)
-        order_assignments = q.get_work_order_assignments(service_order_id)
-        for assignment in order_assignments:
-            try:
-                assignees.append(q.prepare_outlook_event_attendee(assignment["EmployeeId"]))
-            except Exception as e:
-                print(e)
+    service_order_id = order["ServiceOrderId"]
+    custom_order_number = order["CustomOrderNumber"]
+    order_status = order["OrderStatus"]
+    address = order["ShippingAddress"]
+    address_str = f"{address['Address1']}, {address['City']}, {address['StateProvinceAbbreviation']} {address['ZipPostalCode']}"
+    start_time, end_time, is_all_day = combine_date_and_time(order)
+    order_assignments = q.get_work_order_assignments(service_order_id)
+    for assignment in order_assignments:
+        try:
+            assignees.append(q.prepare_outlook_event_attendee(assignment["EmployeeId"]))
+        except Exception as e:
+            print(e)
 
-        # Prepare body content for calendar event
-        hyperlink = f'<a href="https://jgiquality.qualer.com/ServiceOrder/Info/{service_order_id}">{custom_order_number}</a>'
-        body_content = "<b>" + hyperlink + "<br> Number of Assets:</b> " + str(q.count_assets(service_order_id))
-        with open("C:\Qualer_Outlook_Calendar_Sync\\app\\body.html", 'r') as file: # Read the contents of body.html
-            body_html = file.read()
-        body = body_html.replace('<p class="MsoNormal"></p>', '<p class="MsoNormal">' + body_content + '</p>')
+    # Prepare body content for calendar event
+    hyperlink = f'<a href="https://jgiquality.qualer.com/ServiceOrder/Info/{service_order_id}">{custom_order_number}</a>'
+    body_content = "<b>" + hyperlink + "<br> Number of Assets:</b> " + str(q.count_assets(service_order_id))
+    with open("app/body.html", 'r') as file:  # Read the contents of body.html
+        body_html = file.read()
+    body = body_html.replace('<p class="MsoNormal"></p>', '<p class="MsoNormal">' + body_content + '</p>')
 
-        # Prepare dictionary object for Outlook calendar event
-        event = {
-            "subject": order["ClientCompanyName"],
-            "bodyPreview": custom_order_number,
-            "allowNewTimeProposals": True,
-            "body": {
-                "contentType": "html",
-                "content": body
-            },
-            "isAllDay": is_all_day, 
-            "start": {
-                "dateTime": start_time.strftime('%Y-%m-%dT%H:%M:%S.%f'),
-                "timeZone": "America/Chicago"
-            },
-            "end": {
-                "dateTime": end_time.strftime('%Y-%m-%dT%H:%M:%S.%f'),
-                "timeZone": "America/Chicago"
-            },
-            "location": {
-                "displayName": address_str,
-                "locationType": "default"
-            },
-            "attendees": assignees,
-            "categories": [],
-            "showAs": "tentative" if order_status == "Scheduling" else "busy" if order_status == "Processing" else "free",
-            "responseRequested": False,
-            "isReminderOn": False,
-            "allowNewTimeProposals": False,
-            "isCancelled": True if order_status == "Cancelled" else False,
-        }
-        return event
+    # Prepare dictionary object for Outlook calendar event
+    event = {
+        "subject": order["ClientCompanyName"],
+        "bodyPreview": custom_order_number,
+        "allowNewTimeProposals": False,
+        "body": {
+            "contentType": "html",
+            "content": body
+        },
+        "isAllDay": is_all_day,
+        "start": {
+            "dateTime": start_time.strftime('%Y-%m-%dT%H:%M:%S.%f'),
+            "timeZone": "America/Chicago"
+        },
+        "end": {
+            "dateTime": end_time.strftime('%Y-%m-%dT%H:%M:%S.%f'),
+            "timeZone": "America/Chicago"
+        },
+        "location": {
+            "displayName": address_str,
+            "locationType": "default"
+        },
+        "attendees": assignees,
+        "categories": [],
+        "showAs": "tentative" if order_status == "Scheduling" else "busy" if order_status == "Processing" else "free",
+        "responseRequested": False,
+        "isReminderOn": False,
+        "isCancelled": True if order_status == "Cancelled" else False,
+    }
+    return event
 
-    except Exception as e:
-        # Handle the exception (e.g., log the error, continue to the next order, etc.)
-        raise
 
 def coerce_datetime_format(string_datetime):
     datetime_obj = dt.strptime(string_datetime, '%Y-%m-%dT%H:%M:%S.%f0')    # Coercing the string to a datetime object
     formatted_datetime = datetime_obj.strftime('%Y-%m-%dT%H:%M:%S.%f')      # Formatting the datetime object in the desired format
     return formatted_datetime
-    
+
+
 # Function to reformat an event to match the format of the event expected by the Outlook API
 def reformat_event(event):
     reformatted_event = {}
@@ -222,8 +220,8 @@ def find_event(event_id, all_outlook_events):
 def compare_events(event1, event2):
     differing_keys = []
     for key in event1:
-        if key == "body": # or key == "bodyPreview":
-            continue # Do not check the body or bodyPreview keys; there are too many formatting discrepancies
+        if key == "body":  # or key == "bodyPreview":
+            continue  # Do not check the body or bodyPreview keys; there are too many formatting discrepancies
         elif event1[key] != event2.get(key):
             differing_keys.append(key)
     return differing_keys
@@ -231,39 +229,35 @@ def compare_events(event1, event2):
 
 # Function to process an order
 def process_order(order, id_array, is_live):
-    try:
-        event_id = ol.check_outlook_event(order["ServiceOrderId"], order["CustomOrderNumber"], id_array)
-        if order.get("RequestToDate") is None:
-            return None
+    event_id = ol.check_outlook_event(order["ServiceOrderId"], order["CustomOrderNumber"], id_array)
+    if order.get("RequestToDate") is None:
+        return None
 
-        request_to_date = parse_datetime(order["RequestToDate"]).date()
-        if request_to_date < dt.now().date():
-            return "Past"  # Skip the order if it has passed the RequestToDate
+    request_to_date = parse_datetime(order["RequestToDate"]).date()
+    if request_to_date < dt.now().date():
+        return "Past"  # Skip the order if it has passed the RequestToDate
 
-        if order["OrderStatus"] == "Cancelled":
-            if event_id:
-                ol.delete_outlook_event(event_id) if is_live else print(f"Would have deleted event for {order['CustomOrderNumber']} if live")
-                return "Cancelled"
-            else:
-                return "Skipped"  # Skip the cancelled order if it does not have an event in Outlook.
-
-        qualer_event_obj = prepare_event_as_json(order)
-            
+    if order["OrderStatus"] == "Cancelled":
         if event_id:
-            outlook_event_obj = reformat_event(find_event(event_id, all_outlook_events))
-            differing_keys = compare_events(outlook_event_obj, qualer_event_obj)
-            if not differing_keys:
-                print(f"Event for {order['CustomOrderNumber']} is up to date")
-                return "Skipped" # Skip if the changes to the order are irrelevant to the calendar event
-            else:
-                ol.update_outlook_event(event_id, qualer_event_obj, differing_keys == ['attendees']) if is_live else print(f"Would have updated event for {order['CustomOrderNumber']} if live")
-                return "Updated"
+            ol.delete_outlook_event(event_id) if is_live else print(f"Would have deleted event for {order['CustomOrderNumber']} if live")
+            return "Cancelled"
         else:
-            ol.create_outlook_event(qualer_event_obj) if is_live else print(f"Would have created event for {order['CustomOrderNumber']} if live")
-            return "Created"
-    except Exception as e:
-        raise
+            return "Skipped"  # Skip the cancelled order if it does not have an event in Outlook.
 
+    qualer_event_obj = prepare_event_as_json(order)
+
+    if event_id:
+        outlook_event_obj = reformat_event(find_event(event_id, all_outlook_events))
+        differing_keys = compare_events(outlook_event_obj, qualer_event_obj)
+        if not differing_keys:
+            print(f"Event for {order['CustomOrderNumber']} is up to date")
+            return "Skipped"  # Skip if the changes to the order are irrelevant to the calendar event
+        else:
+            ol.update_outlook_event(event_id, qualer_event_obj, differing_keys == ['attendees']) if is_live else print(f"Would have updated event for {order['CustomOrderNumber']} if live")
+            return "Updated"
+    else:
+        ol.create_outlook_event(qualer_event_obj) if is_live else print(f"Would have created event for {order['CustomOrderNumber']} if live")
+        return "Created"
 
 
 ###########################################################################################
@@ -302,14 +296,14 @@ week_end = start_date + timedelta(days=7)
 while week_start <= stop_date:
 
     # Check to see if the week end date exceeds the stop date
-    if(week_end > stop_date):
+    if (week_end > stop_date):
         week_end = stop_date
         last_week = True
 
     # Call the get_work_orders function from ./app/qualer_api.py for the current week
     work_orders = q.get_work_orders(week_start, week_end)
     print(f"Found {len(work_orders)} records between {week_start.strftime('%Y-%m-%d')} and {week_end.strftime('%Y-%m-%d')}")
-    
+
     # Loop through each work order
     for order in work_orders:
         try:
@@ -320,23 +314,24 @@ while week_start <= stop_date:
                 skipped_counter += 1
                 continue
             elif result == "Cancelled":
-                deleted_events.append(order["CustomOrderNumber"][6:])
+                deleted_events.append(int(order["CustomOrderNumber"][6:]))
                 deleted_counter += 1
             elif result == "Updated":
-                updated_events.append(order["CustomOrderNumber"][6:])
+                updated_events.append(int(order["CustomOrderNumber"][6:]))
                 updated_counter += 1
             elif result == "Created":
-                created_events.append(order["CustomOrderNumber"][6:])
+                created_events.append(int(order["CustomOrderNumber"][6:]))
                 created_counter += 1
 
-        except ValueError as e:
+        except ValueError:
             failure_counter += 1
             exceptions.append([order["CustomOrderNumber"][6:], traceback.format_exc()])
         except Exception as e:
             failure_counter += 1
             exceptions.append([order["CustomOrderNumber"][6:], str(e)])
 
-    if(last_week): break
+    if (last_week):
+        break
 
     # Update the week start and week end dates for the next iteration
     week_start = week_end

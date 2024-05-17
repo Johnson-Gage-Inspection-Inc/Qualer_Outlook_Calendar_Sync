@@ -7,10 +7,11 @@ import logging
 
 # Configure logging
 
-log_file = 'C:\\Qualer_Outlook_Calendar_Sync\\app\\exception.log'
+log_file = 'app/exception.log'
 
 logging.basicConfig(filename=log_file, level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 # Function to count the number of CustomOrderNumbers per unique exception
 def count_exceptions(exceptions):
@@ -29,6 +30,7 @@ def count_exceptions(exceptions):
             order_exceptions_count[exception_type] = 1
     return order_exceptions_count
 
+
 # Function to group CustomOrderNumbers by exception type and log the output
 def group_orders_by_exception(exceptions):
     # Create a dictionary to group CustomOrderNumbers by exception type
@@ -46,6 +48,7 @@ def group_orders_by_exception(exceptions):
         logging.exception(f"Exception type: {exception_type}, Order numbers: {order_numbers}")
 
     return
+
 
 def get_last_log_time():
 

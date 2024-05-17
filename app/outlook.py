@@ -7,6 +7,7 @@ import json
 ############################################### Outlook API ###############################################
 ###########################################################################################################
 
+
 # Outlook API authorization
 def get_access_token():
     try:
@@ -24,6 +25,7 @@ def get_access_token():
     except Exception as e:
         print(f"Outlook API Authorization Exception: {e}")
         raise
+
 
 access_token = get_access_token()
 calendar_id = 'AAMkAGEwOWUyZDEzLTQ1MTktNDNkMy1hZmZiLTQxZjZmNGVmNGZlMABGAAAAAACxzJLn1GFkQpJCvD31IsIGBwAxNg00JTgmTqbPLRQZN89GAAAAAAEHAAAxNg00JTgmTqbPLRQZN89GAAjGS-TTAAA='
@@ -58,17 +60,18 @@ def extract_event_details(all_outlook_events):
         else:
             custom_order_number = None
 
-        try: # Try to get the ServiceOrderId from the HTML body, by looking for the first <a> tag with an href starting with the desired URL
+        try:  # Try to get the ServiceOrderId from the HTML body, by looking for the first <a> tag with an href starting with the desired URL
             html = event['body']['content']
-            soup = BeautifulSoup(html, 'html.parser') # Parse the HTML using BeautifulSoup
-            matching_a_tags = soup.find_all('a', href=lambda href: href.startswith('https://jgiquality.qualer.com/ServiceOrder/Info/')) # Find all <a> tags with href starting with the desired URL
-            service_order_id = [a_tag['href'].split('/')[-1] for a_tag in matching_a_tags][0] # Extract the values from the href attributes, and assume the first one is the service order ID
-        except:
+            soup = BeautifulSoup(html, 'html.parser')  # Parse the HTML using BeautifulSoup
+            matching_a_tags = soup.find_all('a', href=lambda href: href.startswith('https://jgiquality.qualer.com/ServiceOrder/Info/'))  # Find all <a> tags with href starting with the desired URL
+            service_order_id = [a_tag['href'].split('/')[-1] for a_tag in matching_a_tags][0]  # Extract the values from the href attributes, and assume the first one is the service order ID
+        except Exception:
             service_order_id = None
         finally:
             existing_events.append([service_order_id, custom_order_number, event_id])
 
     return existing_events
+
 
 # Function to check if an Outlook event exists
 def check_outlook_event(ServiceOrderId, CustomOrderNumber, id_array):
@@ -83,12 +86,13 @@ def check_outlook_event(ServiceOrderId, CustomOrderNumber, id_array):
 ##################################  CRUD Operations  ##################################
 #######################################################################################
 
+
 # C: Function to create an Outlook calendar event
 def create_outlook_event(event):
     url = f'{endpoint}calendars/{calendar_id}/events'
     data = event
     response = requests.post(url, headers=headers, json=data)
-    
+
     if response.status_code == 201:
         print('Event created successfully for ' + event['bodyPreview'] + '.')
     elif response.status_code == 400:
@@ -99,13 +103,14 @@ def create_outlook_event(event):
         raise Exception("Create error: ", str(response))
     return response.json()
 
+
 # R: Function to retrieve Outlook calendar events
 def get_outlook_events():
     global access_token
     first_attempt = True
     # Construct the URL for the Outlook API endpoint
     url = f'{endpoint}calendars/{calendar_id}/events'
-    
+
     # Initialize an empty dictionary to store the eventsndar_id}
     events = {}
 
@@ -121,20 +126,21 @@ def get_outlook_events():
         if response.status_code == 401:                                         # Check the response status for an expired access token
             access_token = get_access_token()                                   # Refresh the access token if it has expired
             if not first_attempt:                                               # Check if this is the first attempt to refresh the token
-                raise Exception(outlook_error_handler(data.get('error', {})))    # Raise an exception if the API call fails   
+                raise Exception(outlook_error_handler(data.get('error', {})))   # Raise an exception if the API call fails
             first_attempt = False                                               # Set the first_attempt flag to False to prevent an infinite loop
             continue                                                            # Retry the API call
         elif response.status_code != 200:                                       # Check the response status for any other error
-            raise Exception(outlook_error_handler(data.get('error', {})))        # Raise an exception if the API call fails
-                                
+            raise Exception(outlook_error_handler(data.get('error', {})))       # Raise an exception if the API call fails
+
         events['value'] = events.get('value', []) + data['value']               # Append the retrieved events to the 'value' key of the events dictionary
         if len(data['value']) < top:                                            # Check if all events have been retrieved
             break
 
-        skip += top # Increment the skip value for the next API call
+        skip += top  # Increment the skip value for the next API call
 
     # Return the dictionary of retrieved events
     return events
+
 
 # U: Function to update an Outlook event
 def update_outlook_event(event_id, event, attendees_only=False):
@@ -149,6 +155,7 @@ def update_outlook_event(event_id, event, attendees_only=False):
         print('Failed to update event for ' + event['bodyPreview'] + '.')
         raise Exception("Update error: ", response.text)
     return response.json()
+
 
 # D: Function to delete an Outlook event
 def delete_outlook_event(event_id):
