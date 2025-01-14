@@ -694,4 +694,3 @@ NoneType: None
 2024-12-25 00:01:50,920 - INFO - Successfully created orders: [68075]
 2024-12-25 00:01:50,920 - INFO - Successfully updated orders: [53627, 53866, 53742, 53360, 63497, 61559, 61604, 53966, 53967]
 2024-12-29 00:01:27,596 - ERROR - Exception type: HTTPSConnectionPool(host='jgiquality.qualer.com', port=443): Max retries exceeded with url: /api/service/workorders/1176122/workitems (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EA59161460>, 'Connection to jgiquality.qualer.com timed out. (connect timeout=None)')), Order numbers: ['068084']
-NoneType: None
