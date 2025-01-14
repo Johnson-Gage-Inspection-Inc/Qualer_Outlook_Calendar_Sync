@@ -86,7 +86,8 @@ def get_work_orders(start, end):
         start_time = start.strftime('%Y-%m-%dT%H:%M:%S.%f')
         end_time = end.strftime('%Y-%m-%dT%H:%M:%S.%f')
         response = requests.get(QUALER_API_ENDPOINT + f"/service/workorders?status=OnSite&from={start_time}&to={end_time}", headers=QUALER_API_HEADERS)
-        work_orders = qualer_error_handler(response)
+        response.raise_for_status()
+        work_orders = response.json()
         if work_orders is not None:
             return work_orders
 
