@@ -266,7 +266,11 @@ def process_order(order, id_array, is_live):
 
 # Get the last log time from the log file
 last_log = ex.get_last_log_time()
-last_log_datetime = dt.strptime(last_log, "%Y-%m-%d %H:%M:%S,%f")
+try:
+    last_log_datetime = dt.strptime(last_log, "%Y-%m-%d %H:%M:%S,%f")
+except ValueError as e:
+    logging.critical(f"Error parsing last log time: {e}")
+    raise SystemExit("Error parsing last log time. Please check the log file.")
 
 # Define the start and stop dates
 start_date = last_log_datetime.replace(hour=0, minute=0, second=0, microsecond=0)

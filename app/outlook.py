@@ -107,18 +107,12 @@ def create_outlook_event(event):
 # R: Function to retrieve Outlook calendar events
 def get_outlook_events():
     global access_token
-    first_attempt = True
-    # Construct the URL for the Outlook API endpoint
-    url = f'{endpoint}calendars/{calendar_id}/events'
+    first_attempt = True  # Flag to indicate if this is the first attempt to get the events
+    url = f'{endpoint}calendars/{calendar_id}/events'  # Endpoint to get the events
+    events = {}  # Initialize the events dictionary
+    skip = 0  # Initial value for $skip
+    top = 1000  # Maximum value for $top (max 1000 events per request)
 
-    # Initialize an empty dictionary to store the eventsndar_id}
-    events = {}
-
-    # Set the number of events to skip and retrieve in each API call
-    skip = 0
-    top = 1000
-
-    # Iterate until all events are retrieved
     while True:
         params = {'$top': top, '$skip': skip}                                   # Set the parameters for the API call
         response = requests.get(url, headers=headers, params=params)            # Ask the Outlook API for the next batch of events
@@ -132,13 +126,12 @@ def get_outlook_events():
         elif response.status_code != 200:                                       # Check the response status for any other error
             raise Exception(outlook_error_handler(data.get('error', {})))       # Raise an exception if the API call fails
 
-        events['value'] = events.get('value', []) + data['value']               # Append the retrieved events to the 'value' key of the events dictionary
-        if len(data['value']) < top:                                            # Check if all events have been retrieved
+        events['value'] = events.get('value', []) + data['value']
+        if len(data['value']) < top:
             break
 
-        skip += top  # Increment the skip value for the next API call
+        skip += top
 
-    # Return the dictionary of retrieved events
     return events
 
 
