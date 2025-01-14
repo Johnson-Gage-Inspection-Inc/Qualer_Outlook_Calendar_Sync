@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import json
+import traceback
 
 ###########################################################################################################
 ############################################### Outlook API ###############################################
@@ -107,38 +108,49 @@ def create_outlook_event(event):
 # R: Function to retrieve Outlook calendar events
 def get_outlook_events():
     global access_token
-    first_attempt = True
-    # Construct the URL for the Outlook API endpoint
-    url = f'{endpoint}calendars/{calendar_id}/events'
+    first_attempt = True  # Flag to indicate if this is the first attempt to get the events
+    url = f'{endpoint}calendars/{calendar_id}/events'  # Endpoint to get the events
+    events = {}  # Initialize the events dictionary
+    skip = 0  # Initial value for $skip
+    top = 1000  # Maximum value for $top (max 1000 events per request)
 
-    # Initialize an empty dictionary to store the eventsndar_id}
-    events = {}
-
-    # Set the number of events to skip and retrieve in each API call
-    skip = 0
-    top = 1000
-
-    # Iterate until all events are retrieved
     while True:
-        params = {'$top': top, '$skip': skip}                                   # Set the parameters for the API call
-        response = requests.get(url, headers=headers, params=params)            # Ask the Outlook API for the next batch of events
-        data = response.json()                                                  # Extract the JSON data from the response
-        if response.status_code == 401:                                         # Check the response status for an expired access token
-            access_token = get_access_token()                                   # Refresh the access token if it has expired
-            if not first_attempt:                                               # Check if this is the first attempt to refresh the token
-                raise Exception(outlook_error_handler(data.get('error', {})))   # Raise an exception if the API call fails
-            first_attempt = False                                               # Set the first_attempt flag to False to prevent an infinite loop
-            continue                                                            # Retry the API call
-        elif response.status_code != 200:                                       # Check the response status for any other error
-            raise Exception(outlook_error_handler(data.get('error', {})))       # Raise an exception if the API call fails
+        params = {'$top': top, '$skip': skip}
+        response = requests.get(url, headers=headers, params=params)
 
-        events['value'] = events.get('value', []) + data['value']               # Append the retrieved events to the 'value' key of the events dictionary
-        if len(data['value']) < top:                                            # Check if all events have been retrieved
+        try:
+            response.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            if response.status_code == 401 and first_attempt:
+                access_token = get_access_token()
+                first_attempt = False
+                continue
+            else:
+                print(f"HTTPError: {e}")
+                print("Response content:", response.content)
+                traceback.print_exc()
+                raise
+
+        try:
+            data = response.json()
+        except json.decoder.JSONDecodeError:
+            print("JSONDecodeError: ", response.content)
+            traceback.print_exc()
+            raise
+
+        if not data:
+            if not first_attempt:
+                raise Exception(outlook_error_handler(data.get('error', {})))
+            else:
+                first_attempt = False
+                continue
+
+        events['value'] = events.get('value', []) + data['value']
+        if len(data['value']) < top:
             break
 
-        skip += top  # Increment the skip value for the next API call
+        skip += top
 
-    # Return the dictionary of retrieved events
     return events
 
 
