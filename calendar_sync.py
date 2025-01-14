@@ -268,7 +268,7 @@ def process_order(order, id_array, is_live):
 # Get the last log time from the log file
 last_log = ex.get_last_log_time()
 if last_log is None:
-    logging.critical("Last log time is None. Please check the log file.")
+    # TODO: Set up a way to notify myself when the last log time is None (email)
     raise SystemExit("Last log time is None. Please check the log file.")
 try:
     last_log_datetime = dt.strptime(last_log, "%Y-%m-%d %H:%M:%S,%f")
