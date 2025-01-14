@@ -3,7 +3,7 @@ from datetime import datetime as dt
 from datetime import time, timedelta
 import os
 import traceback
-
+import tqdm
 import app.exceptions as ex
 import app.outlook as ol
 import app.qualer_api as q
@@ -16,8 +16,9 @@ os.chdir(new_directory)
 ########################################### Initial Variables ############################################
 ##########################################################################################################
 
-LIVE = True  # Set to True to run the script in live mode, False to run in test mode
-LOG = True  # Set to True to enable logging, False to disable logging
+LIVE = False  # Set to True to run the script in live mode, False to run in test mode
+# Set logging level to INFO
+logging.basicConfig(filename='app/exception.log', level=logging.INFO)
 
 # Initialize counters for success and failure
 created_counter = 0
@@ -266,6 +267,9 @@ def process_order(order, id_array, is_live):
 
 # Get the last log time from the log file
 last_log = ex.get_last_log_time()
+if last_log is None:
+    logging.critical("Last log time is None. Please check the log file.")
+    raise SystemExit("Last log time is None. Please check the log file.")
 try:
     last_log_datetime = dt.strptime(last_log, "%Y-%m-%d %H:%M:%S,%f")
 except ValueError as e:
@@ -296,13 +300,19 @@ except FileNotFoundError:
 week_start = start_date
 week_end = start_date + timedelta(days=7)
 
+pbar = tqdm.tqdm(total=(stop_date - start_date).days, desc="Processing Orders")
 # Run the loop until the week end date is equal to or exceeds the stop date
 while week_start <= stop_date:
 
     # Check to see if the week end date exceeds the stop date
-    if (week_end > stop_date):
+    if week_end > stop_date:
         week_end = stop_date
         last_week = True
+
+        iter_count = (week_end - week_start).days
+    else:
+        iter_count = 7
+    pbar.update(iter_count)  # Update the progress bar
 
     # Call the get_work_orders function from ./app/qualer_api.py for the current week
     work_orders = q.get_work_orders(week_start, week_end)
@@ -347,11 +357,10 @@ while week_start <= stop_date:
 ###########################################################################################
 
 # Logging
-if LOG:
-    ex.group_orders_by_exception(exceptions)  # log the exceptions
-    logging.info(f"Successfully created orders: {created_events}") if created_events else None
-    logging.info(f"Successfully updated orders: {updated_events}") if updated_events else None
-    logging.info(f"Successfully deleted orders: {deleted_events}") if deleted_events else None
+ex.group_orders_by_exception(exceptions)  # log the exceptions
+logging.info(f"Successfully created orders: {created_events}") if created_events else None
+logging.info(f"Successfully updated orders: {updated_events}") if updated_events else None
+logging.info(f"Successfully deleted orders: {deleted_events}") if deleted_events else None
 
 
 print()
