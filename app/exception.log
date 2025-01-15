@@ -694,10 +694,134 @@ NoneType: None
 2024-12-25 00:01:50,920 - INFO - Successfully created orders: [68075]
 2024-12-25 00:01:50,920 - INFO - Successfully updated orders: [53627, 53866, 53742, 53360, 63497, 61559, 61604, 53966, 53967]
 2024-12-29 00:01:27,596 - ERROR - Exception type: HTTPSConnectionPool(host='jgiquality.qualer.com', port=443): Max retries exceeded with url: /api/service/workorders/1176122/workitems (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EA59161460>, 'Connection to jgiquality.qualer.com timed out. (connect timeout=None)')), Order numbers: ['068084']
-2025-01-14 12:08:34,666 - INFO - Successfully created orders: [68145, 68148, 68309, 68283, 68288, 68384, 68296, 68418, 68464, 68465, 68469, 68473, 68284, 68085, 68446, 68452, 68449, 68457, 68303, 68304, 68411, 67568, 68474, 68475, 68476, 68525, 68527, 68529, 68532, 68535, 68552, 68558, 68560, 68477, 68507]
-2025-01-14 12:08:34,669 - INFO - Successfully updated orders: [53997, 62432, 55924, 55925, 50048, 50803, 63506, 66418, 64442, 57141, 54054, 53727, 56035, 56096, 63497, 63502, 56357, 56512, 56521, 67949, 67973, 59019, 63952, 56183, 56201, 53819, 53903, 54008, 54046, 54177, 54665, 54701, 54711, 54722, 54790, 54810, 55016, 55387, 53477, 53598, 53627, 67289, 66571, 55004, 57320, 61559, 61604, 53904, 56112, 54154, 54290, 54422, 54449, 53742, 53801, 53803, 64452, 65537, 55685, 65710, 53728, 54075, 66633, 64092, 65707, 39528, 53589, 53867]
-2025-01-14 12:08:34,670 - INFO - Successfully deleted orders: [68009, 23071, 54032]
-2025-01-14 12:15:05,722 - ERROR - Exception type: ('Delete error: ', '{"error":{"code":"ErrorItemNotFound","message":"The specified object was not found in the store."}}'), Order numbers: ['068009', '023071', '054032']
+2025-01-14 17:45:45,782 - INFO - Found 2832 events in Outlook
+2025-01-14 17:45:46,597 - INFO - Found 56 records between 2024-12-29 and 2025-01-05
+2025-01-14 17:45:48,370 - INFO - Would have updated event for 56561-053997 if live
+2025-01-14 17:45:49,557 - INFO - Would have updated event for 56561-062432 if live
+2025-01-14 17:45:50,459 - INFO - Would have updated event for 56561-068145 if live
+2025-01-14 17:45:52,164 - INFO - Would have updated event for 56561-068148 if live
+2025-01-14 17:48:05,701 - INFO - Would have updated event for 56561-063506 if live
+2025-01-14 17:48:05,705 - WARNING - Order 917228 has missing times. Assuming all day event.
+2025-01-14 17:48:07,174 - INFO - Would have updated event for 56561-050048 if live
+2025-01-14 17:48:07,175 - WARNING - Order 930135 has missing times. Assuming all day event.
+2025-01-14 17:48:08,763 - INFO - Would have updated event for 56561-050803 if live
+2025-01-14 17:48:09,899 - INFO - Would have updated event for 56561-055924 if live
+2025-01-14 17:48:10,826 - INFO - Would have updated event for 56561-055925 if live
+2025-01-14 17:48:11,778 - INFO - Found 203 records between 2025-01-05 and 2025-01-12
+2025-01-14 17:48:12,561 - INFO - Would have updated event for 56561-066418 if live
+2025-01-14 17:48:13,440 - INFO - Would have updated event for 56561-064442 if live
+2025-01-14 17:48:14,589 - INFO - Would have updated event for 56561-068309 if live
+2025-01-14 17:48:15,790 - INFO - Would have updated event for 56561-068384 if live
+2025-01-14 17:48:16,663 - INFO - Would have updated event for 56561-068418 if live
+2025-01-14 17:48:17,405 - INFO - Would have updated event for 56561-068464 if live
+2025-01-14 17:48:18,044 - INFO - Would have updated event for 56561-068465 if live
+2025-01-14 17:48:18,701 - INFO - Would have updated event for 56561-068469 if live
+2025-01-14 17:48:19,439 - INFO - Would have updated event for 56561-068473 if live
+2025-01-14 17:48:20,302 - INFO - Would have updated event for 56561-067949 if live
+2025-01-14 17:48:21,186 - INFO - Would have updated event for 56561-067973 if live
+2025-01-14 17:48:22,124 - INFO - Would have updated event for 56561-068283 if live
+2025-01-14 17:48:23,014 - INFO - Would have updated event for 56561-068288 if live
+2025-01-14 17:48:23,770 - INFO - Would have updated event for 56561-068296 if live
+2025-01-14 17:48:25,312 - INFO - Would have updated event for 56561-063497 if live
+2025-01-14 17:48:29,207 - INFO - Would have updated event for 56561-063502 if live
+2025-01-14 17:48:30,669 - INFO - Would have updated event for 56561-053727 if live
+2025-01-14 17:48:31,710 - INFO - Would have updated event for 56561-054054 if live
+2025-01-14 17:48:32,442 - INFO - Would have updated event for 56561-056521 if live
+2025-01-14 17:48:32,444 - WARNING - Order 1150567 has missing times. Assuming all day event.
+2025-01-14 17:48:32,449 - WARNING - Order 1180610 has missing times. Assuming all day event.
+2025-01-14 17:48:33,203 - INFO - Would have updated event for 56561-056035 if live
+2025-01-14 17:48:34,225 - INFO - Would have updated event for 56561-056096 if live
+2025-01-14 17:48:35,764 - INFO - Would have updated event for 56561-056357 if live
+2025-01-14 17:48:36,399 - INFO - Would have updated event for 56561-056512 if live
+2025-01-14 17:48:37,764 - INFO - Would have updated event for 56561-057141 if live
+2025-01-14 17:48:38,924 - INFO - Would have updated event for 56561-053477 if live
+2025-01-14 17:48:39,772 - INFO - Would have updated event for 56561-053819 if live
+2025-01-14 17:48:41,381 - INFO - Would have updated event for 56561-054711 if live
+2025-01-14 17:48:42,635 - INFO - Would have updated event for 56561-054722 if live
+2025-01-14 17:48:44,816 - INFO - Would have updated event for 56561-054810 if live
+2025-01-14 17:48:46,093 - INFO - Would have updated event for 56561-067289 if live
+2025-01-14 17:48:46,710 - INFO - Would have updated event for 56561-068085 if live
+2025-01-14 17:48:55,487 - INFO - Would have updated event for 56561-066571 if live
+2025-01-14 17:48:56,281 - INFO - Would have updated event for 56561-054008 if live
+2025-01-14 17:48:57,402 - INFO - Would have updated event for 56561-054046 if live
+2025-01-14 17:48:57,405 - WARNING - Order 1129564 has missing times. Assuming all day event.
+2025-01-14 17:48:57,410 - WARNING - Order 1143178 has missing times. Assuming all day event.
+2025-01-14 17:48:57,412 - WARNING - Order 1143177 has missing times. Assuming all day event.
+2025-01-14 17:48:57,415 - WARNING - Order 1143179 has missing times. Assuming all day event.
+2025-01-14 17:48:58,609 - INFO - Would have updated event for 56561-059019 if live
+2025-01-14 17:48:59,650 - INFO - Would have updated event for 56561-053598 if live
+2025-01-14 17:49:01,022 - INFO - Would have updated event for 56561-053627 if live
+2025-01-14 17:49:01,652 - INFO - Would have updated event for 56561-054177 if live
+2025-01-14 17:49:02,907 - INFO - Would have updated event for 56561-054665 if live
+2025-01-14 17:49:03,971 - INFO - Would have updated event for 56561-054701 if live
+2025-01-14 17:49:05,867 - INFO - Would have updated event for 56561-054790 if live
+2025-01-14 17:49:06,620 - INFO - Would have updated event for 56561-055387 if live
+2025-01-14 17:49:07,782 - INFO - Would have updated event for 56561-053903 if live
+2025-01-14 17:49:09,150 - INFO - Would have updated event for 56561-056183 if live
+2025-01-14 17:49:10,016 - INFO - Would have updated event for 56561-056201 if live
+2025-01-14 17:49:12,657 - INFO - Would have updated event for 56561-068452 if live
+2025-01-14 17:49:14,072 - INFO - Would have updated event for 56561-068449 if live
+2025-01-14 17:49:14,968 - INFO - Would have updated event for 56561-068457 if live
+2025-01-14 17:49:18,123 - INFO - Would have updated event for 56561-068411 if live
+2025-01-14 17:49:18,800 - INFO - Would have updated event for 56561-068303 if live
+2025-01-14 17:49:19,636 - INFO - Would have updated event for 56561-068304 if live
+2025-01-14 17:49:20,758 - INFO - Would have updated event for 56561-068284 if live
+2025-01-14 17:49:23,831 - INFO - Would have updated event for 56561-063952 if live
+2025-01-14 17:49:24,983 - INFO - Would have updated event for 56561-068446 if live
+2025-01-14 17:49:25,708 - INFO - Would have updated event for 56561-055016 if live
+2025-01-14 17:49:26,681 - INFO - Would have updated event for 56561-055004 if live
+2025-01-14 17:49:27,792 - INFO - Would have updated event for 56561-057320 if live
+2025-01-14 17:49:29,193 - INFO - Would have updated event for 56561-061559 if live
+2025-01-14 17:49:30,542 - INFO - Would have updated event for 56561-061604 if live
+2025-01-14 17:49:31,450 - INFO - Would have updated event for 56561-053904 if live
+2025-01-14 17:49:32,557 - INFO - Would have updated event for 56561-056112 if live
+2025-01-14 17:49:33,283 - INFO - Found 94 records between 2025-01-12 and 2025-01-14
+2025-01-14 17:49:34,770 - INFO - Would have updated event for 56561-068527 if live
+2025-01-14 17:49:35,606 - INFO - Would have updated event for 56561-064452 if live
+2025-01-14 17:49:36,629 - INFO - Would have updated event for 56561-065537 if live
+2025-01-14 17:49:37,468 - INFO - Would have updated event for 56561-055685 if live
+2025-01-14 17:49:38,521 - INFO - Would have updated event for 56561-053801 if live
+2025-01-14 17:49:39,674 - INFO - Would have updated event for 56561-053803 if live
+2025-01-14 17:49:40,637 - INFO - Would have updated event for 56561-052497 if live
+2025-01-14 17:49:41,831 - INFO - Would have updated event for 56561-053742 if live
+2025-01-14 17:49:42,853 - INFO - Would have updated event for 56561-068474 if live
+2025-01-14 17:49:44,064 - INFO - Would have updated event for 56561-068475 if live
+2025-01-14 17:49:45,251 - INFO - Would have updated event for 56561-068476 if live
+2025-01-14 17:49:45,973 - INFO - Would have updated event for 56561-068525 if live
+2025-01-14 17:49:47,998 - INFO - Would have updated event for 56561-068529 if live
+2025-01-14 17:49:49,328 - INFO - Would have updated event for 56561-068532 if live
+2025-01-14 17:49:51,298 - INFO - Would have updated event for 56561-068535 if live
+2025-01-14 17:49:52,621 - INFO - Would have updated event for 56561-068552 if live
+2025-01-14 17:49:54,740 - INFO - Would have updated event for 56561-068560 if live
+2025-01-14 17:49:56,140 - INFO - Would have created event for 56561-068572 if live
+2025-01-14 17:49:57,052 - INFO - Would have updated event for 56561-054154 if live
+2025-01-14 17:49:57,829 - INFO - Would have updated event for 56561-054449 if live
+2025-01-14 17:49:59,430 - INFO - Would have updated event for 56561-065976 if live
+2025-01-14 17:50:00,628 - INFO - Would have updated event for 56561-065710 if live
+2025-01-14 17:50:01,609 - INFO - Would have updated event for 56561-054290 if live
+2025-01-14 17:50:02,307 - INFO - Would have updated event for 56561-054422 if live
+2025-01-14 17:50:03,192 - INFO - Would have updated event for 56561-068558 if live
+2025-01-14 17:50:03,196 - WARNING - Order 1164594 has missing times. Assuming all day event.
+2025-01-14 17:50:05,114 - INFO - Would have updated event for 56561-068507 if live
+2025-01-14 17:50:06,072 - INFO - Would have updated event for 56561-053728 if live
+2025-01-14 17:50:18,875 - INFO - Would have updated event for 56561-054954 if live
+2025-01-14 17:50:19,980 - INFO - Would have updated event for 56561-064092 if live
+2025-01-14 17:50:19,981 - WARNING - Order 1185200 has missing times. Assuming all day event.
+2025-01-14 17:50:20,895 - INFO - Would have updated event for 56561-065707 if live
+2025-01-14 17:50:21,800 - INFO - Would have updated event for 56561-054075 if live
+2025-01-14 17:50:22,959 - INFO - Would have updated event for 56561-068477 if live
+2025-01-14 17:50:23,699 - INFO - Would have updated event for 56561-066633 if live
+2025-01-14 17:50:24,633 - INFO - Would have updated event for 56561-039528 if live
+2025-01-14 17:50:26,501 - INFO - Would have updated event for 56561-053589 if live
+2025-01-14 17:50:27,387 - INFO - Would have updated event for 56561-067568 if live
+2025-01-14 17:50:28,169 - INFO - Would have updated event for 56561-053867 if live
+2025-01-14 17:50:28,172 - ERROR - Exception type: Order is missing values: RequestFromTime, RequestToTime, RequestFromDate, RequestToDate., Order numbers: ['066949', '067607', '067715', '068114', '067714', '067713', '068133', '068138', '068160', '068170', '068169', '068167', '068168', '068174', '068177', '068175', '068176', '068178', '068180', '068183', '068191', '068194', '068197', '068196', '068205', '068193', '067627', '067590', '067669', '067305', '068213', '068211', '067580', '067624', '067665', '067929', '068023', '062850', '068206', '068363', '065988', '068130', '068273', '066943', '066055', '067628', '067779', '067780', '068163', '068164', '068195', '068257', '068262', '068263', '068264', '068265', '064193', '064192', '065424', '064955', '067249', '067552', '067707', '067708', '067709', '067706', '067614', '064674', '065605', '067626', '066030', '066691', '068158', '068139', '068299', '068300', '068301', '068324', '068392', '068393', '068394', '068395', '068396', '068397', '068398', '068399', '068400', '068401', '064654', '067592', '068011', '068024', '068020', '068157', '068179', '068181', '064283', '067174', '066848', '067113', '067610', '068027', '068159', '068165', '066395', '067609', '067679', '066690', '068013', '067680', '065834', '067306', '068153', '067705', '067004', '067155', '068137', '067930', '067710', '068162', '067622', '068156', '068029', '067903', '067304', '066694', '067776', '067621', '067931', '068131', '067247', '067576', '067464', '067508', '065257', '065723', '066059', '067608', '067611', '067602', '068295', '068294', '068499', '068498', '068504', '066948', '066947', '068192', '067821', '068331', '067712', '068198', '068210', '068486', '068502', '068503', '068501', '068500', '066057', '068522', '068521', '068520', '064655', '068012', '068022', '068028', '068182', '068269', '064647', '067019', '067734', '067864', '068270', '068272', '068271', '068166', '068212', '068155', '068154']
 NoneType: None
-2025-01-14 12:15:05,727 - INFO - Successfully created orders: [68309, 68283, 68288, 68384, 68296, 68418, 68464, 68465, 68469, 68473, 68284, 68085, 68446, 68452, 68449, 68457, 68303, 68304, 68411, 67568, 68474, 68475, 68476, 68525, 68527, 68529, 68532, 68535, 68552, 68558, 68560, 68477, 68507]
-2025-01-14 12:15:05,727 - INFO - Successfully updated orders: [68145, 68148, 53997, 62432, 55924, 55925, 50048, 50803, 63506, 66418, 64442, 57141, 54054, 53727, 56035, 56096, 63497, 63502, 56357, 56512, 56521, 67949, 67973, 59019, 63952, 56183, 56201, 53819, 53903, 54008, 54046, 54177, 54665, 54701, 54711, 54722, 54790, 54810, 55016, 55387, 53477, 53598, 53627, 67289, 66571, 55004, 57320, 61559, 61604, 53904, 56112, 54154, 54290, 54422, 54449, 53742, 53801, 53803, 64452, 65537, 55685, 65710, 53728, 54075, 66633, 64092, 65707, 39528, 53589, 53867]
+2025-01-14 17:50:28,173 - INFO - Successfully created orders: [68572]
+2025-01-14 17:50:28,173 - INFO - Successfully updated orders: [53997, 62432, 68145, 68148, 63506, 50048, 50803, 55924, 55925, 66418, 64442, 68309, 68384, 68418, 68464, 68465, 68469, 68473, 67949, 67973, 68283, 68288, 68296, 63497, 63502, 53727, 54054, 56521, 56035, 56096, 56357, 56512, 57141, 53477, 53819, 54711, 54722, 54810, 67289, 68085, 66571, 54008, 54046, 59019, 53598, 53627, 54177, 54665, 54701, 54790, 55387, 53903, 56183, 56201, 68452, 68449, 68457, 68411, 68303, 68304, 68284, 63952, 68446, 55016, 55004, 57320, 61559, 61604, 53904, 56112, 68527, 64452, 65537, 55685, 53801, 53803, 52497, 53742, 68474, 68475, 68476, 68525, 68529, 68532, 68535, 68552, 68560, 54154, 54449, 65976, 65710, 54290, 54422, 68558, 68507, 53728, 54954, 64092, 65707, 54075, 68477, 66633, 39528, 53589, 67568, 53867]
+2025-01-14 17:50:28,173 - INFO - Exception: Order is missing values: RequestFromTime, RequestToTime, RequestFromDate, RequestToDate. (Count: 179)
+2025-01-14 18:08:01,978 - INFO - Found 2832 events in Outlook
+2025-01-14 18:09:52,591 - INFO - Found 2832 events in Outlook
+2025-01-14 18:32:05,788 - INFO - Found 5664 events in Outlook
+2025-01-14 19:09:42,243 - INFO - Found 2832 events in Outlook
+2025-01-14 19:26:44,890 - INFO - Found 2832 events in Outlook
