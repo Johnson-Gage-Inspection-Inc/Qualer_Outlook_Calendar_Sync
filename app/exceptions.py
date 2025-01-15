@@ -45,7 +45,7 @@ def group_orders_by_exception(exceptions):
 
     # Log the output
     for exception_type, order_numbers in order_exceptions.items():
-        logging.exception(f"Exception type: {exception_type}, Order numbers: {order_numbers}")
+        logging.error(f"Exception type: {exception_type}, Order numbers: {order_numbers}")
 
     return
 
