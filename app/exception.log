@@ -135,7 +135,6 @@ Message: Your request can't be completed. The Event.End property for an all-day 
 2023-09-01 00:01:01,439 - INFO - Successfully updated orders: [35017, 35599, 42680, 36155, 34364, 34533, 34893, 35005, 35864, 35133, 33201]
 2023-09-01 00:01:01,439 - INFO - Successfully deleted orders: [34008, 34544]
 2023-09-02 00:03:12,302 - ERROR - Exception type: ('Update error: ', '{"error":{"code":"BadRequest","message":"Property attendees in payload has a value that does not match schema.","innerError":{"date":"2023-09-02T05:02:33","request-id":"4e274428-8856-4b81-bb31-f448ca1f6974","client-request-id":"4e274428-8856-4b81-bb31-f448ca1f6974"}}}'), Order numbers: [33424]
-NoneType: None
 2023-09-02 00:03:12,302 - INFO - Successfully created orders: [48194, 48166, 48159, 48177]
 2023-09-02 00:03:12,302 - INFO - Successfully updated orders: [46707, 36395, 36208, 34200, 36598, 36915, 37763, 37053, 36708, 34893, 36578, 36597, 36684, 45034, 36675, 36258, 44705, 46379, 38295, 48064, 36301, 36098, 35199, 36303, 36713, 37853, 36534, 34290, 36771, 36599, 36674, 37157, 47022, 11336]
 2023-09-02 00:03:12,302 - INFO - Successfully deleted orders: [37022]
@@ -151,12 +150,10 @@ NoneType: None
 2023-09-09 00:01:10,770 - INFO - Successfully updated orders: [37189, 41953, 45559, 35196, 41882, 35117, 36302, 01415, 35864, 35598, 36303, 33956, 35469, 36020, 34082, 42680, 34419, 36922, 21745]
 2023-09-09 00:01:10,770 - INFO - Successfully deleted orders: [34416]
 2023-09-12 00:01:28,889 - ERROR - Exception type: cannot access local variable 'request_from' where it is not associated with a value, Order numbers: [48424]
-NoneType: None
 2023-09-12 00:01:28,889 - INFO - Successfully created orders: [48411, 48421, 48464, 47720, 48461]
 2023-09-12 00:01:28,889 - INFO - Successfully updated orders: [34227, 34082, 34199, 46329, 34311, 34361, 44782, 23232, 34166, 33979, 34890, 35187, 42912, 36684, 36708, 34173, 34552, 34084, 36506, 20063]
 2023-09-12 00:01:28,889 - INFO - Successfully deleted orders: [18581]
 2023-09-13 00:00:48,894 - ERROR - Exception type: Order is missing values: RequestFromTime, RequestToTime, RequestFromDate., Order numbers: [48362]
-NoneType: None
 2023-09-13 00:00:48,894 - INFO - Successfully created orders: [48503, 48496]
 2023-09-13 00:00:48,894 - INFO - Successfully updated orders: [35187, 36506, 48372, 01415, 48269, 36922]
 2023-09-13 00:00:48,894 - INFO - Successfully deleted orders: [34552, 46329]
@@ -203,7 +200,6 @@ NoneType: None
 2023-10-12 00:01:36,554 - INFO - Successfully updated orders: [36395, 19711, 49115, 36094, 35750, 47001, 36024, 37763, 35877, 21865, 46980, 35087, 21082]
 2023-10-12 00:01:36,554 - INFO - Successfully deleted orders: [35709]
 2023-10-13 00:03:25,139 - ERROR - Exception type: ('Update error: ', '{"error":{"code":"BadRequest","message":"Property attendees in payload has a value that does not match schema.","innerError":{"date":"2023-10-13T05:03:23","request-id":"44ff0355-e8d7-4a01-b6d1-2e4fbebca94d","client-request-id":"44ff0355-e8d7-4a01-b6d1-2e4fbebca94d"}}}'), Order numbers: [36094]
-NoneType: None
 2023-10-13 00:03:25,139 - INFO - Successfully created orders: [49689, 49707, 49650, 49704]
 2023-10-13 00:03:25,139 - INFO - Successfully updated orders: [47001, 35750, 36713, 46980, 49115]
 2023-10-15 00:00:57,882 - INFO - Successfully created orders: [49743]
@@ -238,7 +234,6 @@ NoneType: None
 2023-11-10 00:02:01,375 - INFO - Successfully created orders: [50872, 50795, 50871, 50856, 50857, 50799]
 2023-11-10 00:02:01,375 - INFO - Successfully updated orders: [49243, 36395, 21596, 40296, 47897, 38926, 50731, 46314, 38961, 48326, 46330, 38295, 38499, 38420, 38856, 38896, 48464, 38613, 37371, 50251, 37069, 47022, 38853, 36674, 38611, 39260, 49484, 38268, 38266, 38505, 38588, 38968, 38895, 36675, 38612, 36760, 39043, 46390, 38902, 38897, 50579, 38565]
 2023-11-11 00:02:11,469 - ERROR - Exception type: ('Update error: ', ''), Order numbers: [34591]
-NoneType: None
 2023-11-11 00:02:11,484 - INFO - Successfully created orders: [50981, 51002, 51008, 50966, 50982, 50964, 50954, 51007, 50963, 50950, 50955, 51010]
 2023-11-11 00:02:11,484 - INFO - Successfully updated orders: [21596, 37094, 21082]
 2023-11-11 00:02:11,484 - INFO - Successfully deleted orders: [50872]
@@ -465,9 +460,7 @@ NoneType: None
 2024-07-16 00:06:35,910 - INFO - Successfully updated orders: [47703, 47211, 47267, 47555, 54824, 47162, 46055, 57976, 52270, 59837, 57847, 47303, 47895, 32113, 47457, 47458, 47459, 54816, 54817, 46949, 47043, 47305]
 2024-07-16 00:06:35,910 - INFO - Successfully deleted orders: [46863]
 2024-07-18 00:08:11,911 - ERROR - Exception type: ('Update error: ', '{"error":{"code":"UnknownError","message":"","innerError":{"date":"2024-07-18T07:04:41","request-id":"01739aa5-b3b3-4356-9375-ed38fc919ca1","client-request-id":"01739aa5-b3b3-4356-9375-ed38fc919ca1"}}}'), Order numbers: ['031948']
-NoneType: None
 2024-07-18 00:08:11,911 - ERROR - Exception type: ('Update error: ', ''), Order numbers: ['047172']
-NoneType: None
 2024-07-18 00:08:11,911 - INFO - Successfully created orders: [61300, 61168, 61222, 50159, 61203, 61246, 61247, 61249, 61251]
 2024-07-18 00:08:11,911 - INFO - Successfully updated orders: [60394, 48663, 48838, 61014, 53303, 50155, 48903, 48923, 57179, 58093, 58328, 59184, 48424, 48306, 47455, 47582, 47858, 47935, 47951, 47301, 46978, 33100, 37750, 50799, 47203, 47224, 47434, 48301, 48379, 48411, 48661, 48687, 48965, 56614, 48841, 49743, 59837, 60115, 55089]
 2024-07-20 00:05:49,466 - INFO - Successfully created orders: [61310, 61311, 61321, 61368, 61379, 61369, 61370, 61373, 61374, 61330, 61320, 61356, 61371, 61333, 61380]
@@ -501,9 +494,7 @@ NoneType: None
 2024-08-05 00:04:43,300 - INFO - Successfully created orders: [61961, 61969, 61959, 61975, 61974, 61970, 61965, 61977]
 2024-08-05 00:04:43,300 - INFO - Successfully updated orders: [60831, 35018, 47528, 33101, 59392, 48301, 47861, 47511, 54918, 49845, 48921, 47963, 48965, 57606, 54545, 47944, 50799, 47858, 47455, 57179, 47671, 47994, 48813, 61619]
 2024-08-08 00:20:58,702 - ERROR - Exception type: can only concatenate str (not "int") to str, Order numbers: ['056613']
-NoneType: None
 2024-08-08 00:20:58,702 - ERROR - Exception type: ('Delete error: ', ''), Order numbers: ['056548']
-NoneType: None
 2024-08-08 00:20:58,702 - INFO - Successfully created orders: [62074, 62075, 62152, 62176, 62057, 62032, 62069, 62072, 62177, 62068]
 2024-08-08 00:20:58,702 - INFO - Successfully updated orders: [47858, 47455, 47659, 47671, 50306, 50310, 47944, 47950, 47951, 58548, 59015, 57179, 55139, 52056, 50788, 50799, 48058, 60831, 33101, 34889, 35018, 47861, 48272, 48276, 48283, 48301, 48400, 48921, 48922, 48965, 49511, 49565, 49743, 49801, 49846, 49852, 49896, 49936, 50127, 59837, 47963, 50318, 50982, 51359, 52666, 54918, 56677, 57906, 59343, 38853, 61619, 61380, 55339]
 2024-08-08 00:20:58,702 - INFO - Successfully deleted orders: [33392, 48867]
@@ -599,7 +590,6 @@ NoneType: None
 2024-10-23 00:04:14,536 - INFO - Successfully updated orders: [58745, 58328, 65455, 50587, 50753, 49999, 50589, 50541, 64851]
 2024-10-23 00:04:14,536 - INFO - Successfully deleted orders: [65265]
 2024-10-26 00:03:37,530 - ERROR - Exception type: ('Update error: ', ''), Order numbers: ['061977']
-NoneType: None
 2024-10-26 00:03:37,546 - INFO - Successfully created orders: [65554, 65599, 65597, 65665, 65643, 65686, 65641, 65639, 65663, 65557, 65642, 65598, 65570, 65601, 65685]
 2024-10-26 00:03:37,546 - INFO - Successfully updated orders: [62556, 65375, 65533, 51206]
 2024-10-26 00:03:37,546 - INFO - Successfully deleted orders: [50540, 53329, 63813]
@@ -663,7 +653,6 @@ NoneType: None
 2024-12-07 00:03:16,183 - INFO - Successfully updated orders: [52655, 65844, 54693, 54873, 56430, 54629, 55009, 52667, 52910, 24075, 54867, 67116, 53359, 61003, 52493]
 2024-12-09 00:01:39,977 - INFO - Successfully updated orders: [56430, 64147, 64061, 52662, 64173, 53023, 62855, 38096]
 2024-12-10 00:02:06,871 - ERROR - Exception type: can only concatenate str (not "int") to str, Order numbers: ['067432']
-NoneType: None
 2024-12-10 00:02:06,871 - INFO - Successfully created orders: [67446, 67447]
 2024-12-10 00:02:06,871 - INFO - Successfully updated orders: [56430, 52662, 53023, 62855, 64173, 62894, 67096, 38096, 64061, 54810]
 2024-12-10 00:02:06,871 - INFO - Successfully deleted orders: [67381]
@@ -694,134 +683,9 @@ NoneType: None
 2024-12-25 00:01:50,920 - INFO - Successfully created orders: [68075]
 2024-12-25 00:01:50,920 - INFO - Successfully updated orders: [53627, 53866, 53742, 53360, 63497, 61559, 61604, 53966, 53967]
 2024-12-29 00:01:27,596 - ERROR - Exception type: HTTPSConnectionPool(host='jgiquality.qualer.com', port=443): Max retries exceeded with url: /api/service/workorders/1176122/workitems (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x000001EA59161460>, 'Connection to jgiquality.qualer.com timed out. (connect timeout=None)')), Order numbers: ['068084']
-2025-01-14 17:45:45,782 - INFO - Found 2832 events in Outlook
-2025-01-14 17:45:46,597 - INFO - Found 56 records between 2024-12-29 and 2025-01-05
-2025-01-14 17:45:48,370 - INFO - Would have updated event for 56561-053997 if live
-2025-01-14 17:45:49,557 - INFO - Would have updated event for 56561-062432 if live
-2025-01-14 17:45:50,459 - INFO - Would have updated event for 56561-068145 if live
-2025-01-14 17:45:52,164 - INFO - Would have updated event for 56561-068148 if live
-2025-01-14 17:48:05,701 - INFO - Would have updated event for 56561-063506 if live
-2025-01-14 17:48:05,705 - WARNING - Order 917228 has missing times. Assuming all day event.
-2025-01-14 17:48:07,174 - INFO - Would have updated event for 56561-050048 if live
-2025-01-14 17:48:07,175 - WARNING - Order 930135 has missing times. Assuming all day event.
-2025-01-14 17:48:08,763 - INFO - Would have updated event for 56561-050803 if live
-2025-01-14 17:48:09,899 - INFO - Would have updated event for 56561-055924 if live
-2025-01-14 17:48:10,826 - INFO - Would have updated event for 56561-055925 if live
-2025-01-14 17:48:11,778 - INFO - Found 203 records between 2025-01-05 and 2025-01-12
-2025-01-14 17:48:12,561 - INFO - Would have updated event for 56561-066418 if live
-2025-01-14 17:48:13,440 - INFO - Would have updated event for 56561-064442 if live
-2025-01-14 17:48:14,589 - INFO - Would have updated event for 56561-068309 if live
-2025-01-14 17:48:15,790 - INFO - Would have updated event for 56561-068384 if live
-2025-01-14 17:48:16,663 - INFO - Would have updated event for 56561-068418 if live
-2025-01-14 17:48:17,405 - INFO - Would have updated event for 56561-068464 if live
-2025-01-14 17:48:18,044 - INFO - Would have updated event for 56561-068465 if live
-2025-01-14 17:48:18,701 - INFO - Would have updated event for 56561-068469 if live
-2025-01-14 17:48:19,439 - INFO - Would have updated event for 56561-068473 if live
-2025-01-14 17:48:20,302 - INFO - Would have updated event for 56561-067949 if live
-2025-01-14 17:48:21,186 - INFO - Would have updated event for 56561-067973 if live
-2025-01-14 17:48:22,124 - INFO - Would have updated event for 56561-068283 if live
-2025-01-14 17:48:23,014 - INFO - Would have updated event for 56561-068288 if live
-2025-01-14 17:48:23,770 - INFO - Would have updated event for 56561-068296 if live
-2025-01-14 17:48:25,312 - INFO - Would have updated event for 56561-063497 if live
-2025-01-14 17:48:29,207 - INFO - Would have updated event for 56561-063502 if live
-2025-01-14 17:48:30,669 - INFO - Would have updated event for 56561-053727 if live
-2025-01-14 17:48:31,710 - INFO - Would have updated event for 56561-054054 if live
-2025-01-14 17:48:32,442 - INFO - Would have updated event for 56561-056521 if live
-2025-01-14 17:48:32,444 - WARNING - Order 1150567 has missing times. Assuming all day event.
-2025-01-14 17:48:32,449 - WARNING - Order 1180610 has missing times. Assuming all day event.
-2025-01-14 17:48:33,203 - INFO - Would have updated event for 56561-056035 if live
-2025-01-14 17:48:34,225 - INFO - Would have updated event for 56561-056096 if live
-2025-01-14 17:48:35,764 - INFO - Would have updated event for 56561-056357 if live
-2025-01-14 17:48:36,399 - INFO - Would have updated event for 56561-056512 if live
-2025-01-14 17:48:37,764 - INFO - Would have updated event for 56561-057141 if live
-2025-01-14 17:48:38,924 - INFO - Would have updated event for 56561-053477 if live
-2025-01-14 17:48:39,772 - INFO - Would have updated event for 56561-053819 if live
-2025-01-14 17:48:41,381 - INFO - Would have updated event for 56561-054711 if live
-2025-01-14 17:48:42,635 - INFO - Would have updated event for 56561-054722 if live
-2025-01-14 17:48:44,816 - INFO - Would have updated event for 56561-054810 if live
-2025-01-14 17:48:46,093 - INFO - Would have updated event for 56561-067289 if live
-2025-01-14 17:48:46,710 - INFO - Would have updated event for 56561-068085 if live
-2025-01-14 17:48:55,487 - INFO - Would have updated event for 56561-066571 if live
-2025-01-14 17:48:56,281 - INFO - Would have updated event for 56561-054008 if live
-2025-01-14 17:48:57,402 - INFO - Would have updated event for 56561-054046 if live
-2025-01-14 17:48:57,405 - WARNING - Order 1129564 has missing times. Assuming all day event.
-2025-01-14 17:48:57,410 - WARNING - Order 1143178 has missing times. Assuming all day event.
-2025-01-14 17:48:57,412 - WARNING - Order 1143177 has missing times. Assuming all day event.
-2025-01-14 17:48:57,415 - WARNING - Order 1143179 has missing times. Assuming all day event.
-2025-01-14 17:48:58,609 - INFO - Would have updated event for 56561-059019 if live
-2025-01-14 17:48:59,650 - INFO - Would have updated event for 56561-053598 if live
-2025-01-14 17:49:01,022 - INFO - Would have updated event for 56561-053627 if live
-2025-01-14 17:49:01,652 - INFO - Would have updated event for 56561-054177 if live
-2025-01-14 17:49:02,907 - INFO - Would have updated event for 56561-054665 if live
-2025-01-14 17:49:03,971 - INFO - Would have updated event for 56561-054701 if live
-2025-01-14 17:49:05,867 - INFO - Would have updated event for 56561-054790 if live
-2025-01-14 17:49:06,620 - INFO - Would have updated event for 56561-055387 if live
-2025-01-14 17:49:07,782 - INFO - Would have updated event for 56561-053903 if live
-2025-01-14 17:49:09,150 - INFO - Would have updated event for 56561-056183 if live
-2025-01-14 17:49:10,016 - INFO - Would have updated event for 56561-056201 if live
-2025-01-14 17:49:12,657 - INFO - Would have updated event for 56561-068452 if live
-2025-01-14 17:49:14,072 - INFO - Would have updated event for 56561-068449 if live
-2025-01-14 17:49:14,968 - INFO - Would have updated event for 56561-068457 if live
-2025-01-14 17:49:18,123 - INFO - Would have updated event for 56561-068411 if live
-2025-01-14 17:49:18,800 - INFO - Would have updated event for 56561-068303 if live
-2025-01-14 17:49:19,636 - INFO - Would have updated event for 56561-068304 if live
-2025-01-14 17:49:20,758 - INFO - Would have updated event for 56561-068284 if live
-2025-01-14 17:49:23,831 - INFO - Would have updated event for 56561-063952 if live
-2025-01-14 17:49:24,983 - INFO - Would have updated event for 56561-068446 if live
-2025-01-14 17:49:25,708 - INFO - Would have updated event for 56561-055016 if live
-2025-01-14 17:49:26,681 - INFO - Would have updated event for 56561-055004 if live
-2025-01-14 17:49:27,792 - INFO - Would have updated event for 56561-057320 if live
-2025-01-14 17:49:29,193 - INFO - Would have updated event for 56561-061559 if live
-2025-01-14 17:49:30,542 - INFO - Would have updated event for 56561-061604 if live
-2025-01-14 17:49:31,450 - INFO - Would have updated event for 56561-053904 if live
-2025-01-14 17:49:32,557 - INFO - Would have updated event for 56561-056112 if live
-2025-01-14 17:49:33,283 - INFO - Found 94 records between 2025-01-12 and 2025-01-14
-2025-01-14 17:49:34,770 - INFO - Would have updated event for 56561-068527 if live
-2025-01-14 17:49:35,606 - INFO - Would have updated event for 56561-064452 if live
-2025-01-14 17:49:36,629 - INFO - Would have updated event for 56561-065537 if live
-2025-01-14 17:49:37,468 - INFO - Would have updated event for 56561-055685 if live
-2025-01-14 17:49:38,521 - INFO - Would have updated event for 56561-053801 if live
-2025-01-14 17:49:39,674 - INFO - Would have updated event for 56561-053803 if live
-2025-01-14 17:49:40,637 - INFO - Would have updated event for 56561-052497 if live
-2025-01-14 17:49:41,831 - INFO - Would have updated event for 56561-053742 if live
-2025-01-14 17:49:42,853 - INFO - Would have updated event for 56561-068474 if live
-2025-01-14 17:49:44,064 - INFO - Would have updated event for 56561-068475 if live
-2025-01-14 17:49:45,251 - INFO - Would have updated event for 56561-068476 if live
-2025-01-14 17:49:45,973 - INFO - Would have updated event for 56561-068525 if live
-2025-01-14 17:49:47,998 - INFO - Would have updated event for 56561-068529 if live
-2025-01-14 17:49:49,328 - INFO - Would have updated event for 56561-068532 if live
-2025-01-14 17:49:51,298 - INFO - Would have updated event for 56561-068535 if live
-2025-01-14 17:49:52,621 - INFO - Would have updated event for 56561-068552 if live
-2025-01-14 17:49:54,740 - INFO - Would have updated event for 56561-068560 if live
-2025-01-14 17:49:56,140 - INFO - Would have created event for 56561-068572 if live
-2025-01-14 17:49:57,052 - INFO - Would have updated event for 56561-054154 if live
-2025-01-14 17:49:57,829 - INFO - Would have updated event for 56561-054449 if live
-2025-01-14 17:49:59,430 - INFO - Would have updated event for 56561-065976 if live
-2025-01-14 17:50:00,628 - INFO - Would have updated event for 56561-065710 if live
-2025-01-14 17:50:01,609 - INFO - Would have updated event for 56561-054290 if live
-2025-01-14 17:50:02,307 - INFO - Would have updated event for 56561-054422 if live
-2025-01-14 17:50:03,192 - INFO - Would have updated event for 56561-068558 if live
-2025-01-14 17:50:03,196 - WARNING - Order 1164594 has missing times. Assuming all day event.
-2025-01-14 17:50:05,114 - INFO - Would have updated event for 56561-068507 if live
-2025-01-14 17:50:06,072 - INFO - Would have updated event for 56561-053728 if live
-2025-01-14 17:50:18,875 - INFO - Would have updated event for 56561-054954 if live
-2025-01-14 17:50:19,980 - INFO - Would have updated event for 56561-064092 if live
-2025-01-14 17:50:19,981 - WARNING - Order 1185200 has missing times. Assuming all day event.
-2025-01-14 17:50:20,895 - INFO - Would have updated event for 56561-065707 if live
-2025-01-14 17:50:21,800 - INFO - Would have updated event for 56561-054075 if live
-2025-01-14 17:50:22,959 - INFO - Would have updated event for 56561-068477 if live
-2025-01-14 17:50:23,699 - INFO - Would have updated event for 56561-066633 if live
-2025-01-14 17:50:24,633 - INFO - Would have updated event for 56561-039528 if live
-2025-01-14 17:50:26,501 - INFO - Would have updated event for 56561-053589 if live
-2025-01-14 17:50:27,387 - INFO - Would have updated event for 56561-067568 if live
-2025-01-14 17:50:28,169 - INFO - Would have updated event for 56561-053867 if live
-2025-01-14 17:50:28,172 - ERROR - Exception type: Order is missing values: RequestFromTime, RequestToTime, RequestFromDate, RequestToDate., Order numbers: ['066949', '067607', '067715', '068114', '067714', '067713', '068133', '068138', '068160', '068170', '068169', '068167', '068168', '068174', '068177', '068175', '068176', '068178', '068180', '068183', '068191', '068194', '068197', '068196', '068205', '068193', '067627', '067590', '067669', '067305', '068213', '068211', '067580', '067624', '067665', '067929', '068023', '062850', '068206', '068363', '065988', '068130', '068273', '066943', '066055', '067628', '067779', '067780', '068163', '068164', '068195', '068257', '068262', '068263', '068264', '068265', '064193', '064192', '065424', '064955', '067249', '067552', '067707', '067708', '067709', '067706', '067614', '064674', '065605', '067626', '066030', '066691', '068158', '068139', '068299', '068300', '068301', '068324', '068392', '068393', '068394', '068395', '068396', '068397', '068398', '068399', '068400', '068401', '064654', '067592', '068011', '068024', '068020', '068157', '068179', '068181', '064283', '067174', '066848', '067113', '067610', '068027', '068159', '068165', '066395', '067609', '067679', '066690', '068013', '067680', '065834', '067306', '068153', '067705', '067004', '067155', '068137', '067930', '067710', '068162', '067622', '068156', '068029', '067903', '067304', '066694', '067776', '067621', '067931', '068131', '067247', '067576', '067464', '067508', '065257', '065723', '066059', '067608', '067611', '067602', '068295', '068294', '068499', '068498', '068504', '066948', '066947', '068192', '067821', '068331', '067712', '068198', '068210', '068486', '068502', '068503', '068501', '068500', '066057', '068522', '068521', '068520', '064655', '068012', '068022', '068028', '068182', '068269', '064647', '067019', '067734', '067864', '068270', '068272', '068271', '068166', '068212', '068155', '068154']
-NoneType: None
-2025-01-14 17:50:28,173 - INFO - Successfully created orders: [68572]
-2025-01-14 17:50:28,173 - INFO - Successfully updated orders: [53997, 62432, 68145, 68148, 63506, 50048, 50803, 55924, 55925, 66418, 64442, 68309, 68384, 68418, 68464, 68465, 68469, 68473, 67949, 67973, 68283, 68288, 68296, 63497, 63502, 53727, 54054, 56521, 56035, 56096, 56357, 56512, 57141, 53477, 53819, 54711, 54722, 54810, 67289, 68085, 66571, 54008, 54046, 59019, 53598, 53627, 54177, 54665, 54701, 54790, 55387, 53903, 56183, 56201, 68452, 68449, 68457, 68411, 68303, 68304, 68284, 63952, 68446, 55016, 55004, 57320, 61559, 61604, 53904, 56112, 68527, 64452, 65537, 55685, 53801, 53803, 52497, 53742, 68474, 68475, 68476, 68525, 68529, 68532, 68535, 68552, 68560, 54154, 54449, 65976, 65710, 54290, 54422, 68558, 68507, 53728, 54954, 64092, 65707, 54075, 68477, 66633, 39528, 53589, 67568, 53867]
-2025-01-14 17:50:28,173 - INFO - Exception: Order is missing values: RequestFromTime, RequestToTime, RequestFromDate, RequestToDate. (Count: 179)
-2025-01-14 18:08:01,978 - INFO - Found 2832 events in Outlook
-2025-01-14 18:09:52,591 - INFO - Found 2832 events in Outlook
-2025-01-14 18:32:05,788 - INFO - Found 5664 events in Outlook
-2025-01-14 19:09:42,243 - INFO - Found 2832 events in Outlook
-2025-01-14 19:26:44,890 - INFO - Found 2832 events in Outlook
+2025-01-14 12:08:34,666 - INFO - Successfully created orders: [68145, 68148, 68309, 68283, 68288, 68384, 68296, 68418, 68464, 68465, 68469, 68473, 68284, 68085, 68446, 68452, 68449, 68457, 68303, 68304, 68411, 67568, 68474, 68475, 68476, 68525, 68527, 68529, 68532, 68535, 68552, 68558, 68560, 68477, 68507]
+2025-01-14 12:08:34,669 - INFO - Successfully updated orders: [53997, 62432, 55924, 55925, 50048, 50803, 63506, 66418, 64442, 57141, 54054, 53727, 56035, 56096, 63497, 63502, 56357, 56512, 56521, 67949, 67973, 59019, 63952, 56183, 56201, 53819, 53903, 54008, 54046, 54177, 54665, 54701, 54711, 54722, 54790, 54810, 55016, 55387, 53477, 53598, 53627, 67289, 66571, 55004, 57320, 61559, 61604, 53904, 56112, 54154, 54290, 54422, 54449, 53742, 53801, 53803, 64452, 65537, 55685, 65710, 53728, 54075, 66633, 64092, 65707, 39528, 53589, 53867]
+2025-01-14 12:08:34,670 - INFO - Successfully deleted orders: [68009, 23071, 54032]
+2025-01-14 12:15:05,722 - ERROR - Exception type: ('Delete error: ', '{"error":{"code":"ErrorItemNotFound","message":"The specified object was not found in the store."}}'), Order numbers: ['068009', '023071', '054032']
+2025-01-14 12:15:05,727 - INFO - Successfully created orders: [68309, 68283, 68288, 68384, 68296, 68418, 68464, 68465, 68469, 68473, 68284, 68085, 68446, 68452, 68449, 68457, 68303, 68304, 68411, 67568, 68474, 68475, 68476, 68525, 68527, 68529, 68532, 68535, 68552, 68558, 68560, 68477, 68507]
+2025-01-14 12:15:05,727 - INFO - Successfully updated orders: [68145, 68148, 53997, 62432, 55924, 55925, 50048, 50803, 63506, 66418, 64442, 57141, 54054, 53727, 56035, 56096, 63497, 63502, 56357, 56512, 56521, 67949, 67973, 59019, 63952, 56183, 56201, 53819, 53903, 54008, 54046, 54177, 54665, 54701, 54711, 54722, 54790, 54810, 55016, 55387, 53477, 53598, 53627, 67289, 66571, 55004, 57320, 61559, 61604, 53904, 56112, 54154, 54290, 54422, 54449, 53742, 53801, 53803, 64452, 65537, 55685, 65710, 53728, 54075, 66633, 64092, 65707, 39528, 53589, 53867]
