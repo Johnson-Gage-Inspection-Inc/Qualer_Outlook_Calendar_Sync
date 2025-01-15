@@ -40,7 +40,7 @@ def group_orders_by_exception(exceptions: list) -> None:
             order_exceptions[exception] = [order_number]
 
     for exception_type, order_numbers in order_exceptions.items():
-        logging.exception(f"Exception type: {exception_type}, Order numbers: {order_numbers}")
+        logging.error(f"Exception type: {exception_type}, Order numbers: {order_numbers}")
 
 
 def get_last_log_time() -> str:

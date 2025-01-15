@@ -18,17 +18,10 @@ logging.basicConfig(filename='app/exception.log', level=logging.DEBUG)
 
 class CalendarSync:
     def __init__(self):
-        self.created_counter = 0
-        self.deleted_counter = 0
-        self.updated_counter = 0
-        self.skipped_counter = 0
-        self.failure_counter = 0
         self.exceptions = []
         self.created_events = []
         self.deleted_events = []
         self.updated_events = []
-        self.last_week = False
-        self.work_order_numbers = []
         self.qualer = QualerAPI()
         self.outlook = Outlook()
         self.processor = CalendarSyncProcessor(self, self.qualer, self.outlook)
@@ -47,18 +40,17 @@ class CalendarSync:
             raise SystemExit("Error parsing last log time. Please check the log file.")
 
     def tickCounters(cSync, order):
-        if order.status == "Past" or order.status == "Skipped":
-            cSync.skipped_counter += 1
+        if order.status == "Past":
+            return True
+        if order.status == "Skipped":
+            cSync.skipped_events.append(order.CustomOrderNumber)
             return True
         elif order.status == "Cancelled":
             cSync.deleted_events.append(order.CustomOrderNumber)
-            cSync.deleted_counter += 1
         elif order.status == "Updated":
             cSync.updated_events.append(order.CustomOrderNumber)
-            cSync.updated_counter += 1
         elif order.status == "Created":
             cSync.created_events.append(order.CustomOrderNumber)
-            cSync.created_counter += 1
 
     def finalLogging(cSync):
         ex.group_orders_by_exception(cSync.exceptions)  # log the exceptions
@@ -77,36 +69,6 @@ class CalendarSyncProcessor:
         self.qualer_api = qualer_api
         self.outlook = outlook
 
-    def process_order(self, order, is_live=False):
-        """Function to process an order"""
-        order.CustomOrderNumber = int(order["CustomOrderNumber"][6:])
-        event_id = self.outlook.check(order["ServiceOrderId"], order["CustomOrderNumber"])
-        if order.get("RequestToDate") is None:
-            return None
-
-        request_to_date = parse_datetime(order["RequestToDate"]).date()
-        if request_to_date < dt.now().date():
-            return "Past"  # Skip the order if it has passed the RequestToDate
-
-        if order["OrderStatus"] == "Cancelled":
-            if event_id:
-                self.outlook.event.delete(event_id) if is_live else logging.info(f"Would have deleted event for {order['CustomOrderNumber']} if live")
-                return "Cancelled"
-            else:
-                return "Skipped"  # Skip the cancelled order if it does not have an event in Outlook.
-
-        if event_id:
-            event_obj = self.outlook.event.lookup(event_id)
-            if (differing_keys := diff(event_obj, dict(order))):  # NOTE: May be able to use `order` instead of `dict(order)`
-                self.outlook.event.update(event_id, order, differing_keys == ['attendees']) if is_live else logging.info(f"Would have updated event for {order['CustomOrderNumber']} if live")
-                return "Updated"
-            else:
-                logging.info(f"Event for {order['CustomOrderNumber']} is up to date")
-                return "Skipped"  # Skip if the changes to the order are irrelevant to the calendar event
-        else:
-            self.outlook.event.create(order) if is_live else logging.info(f"Would have created event for {order['CustomOrderNumber']} if live")
-            return "Created"
-
     def loopOrders(self):
         """Function to loop through work orders and process them"""
         self.qualer_api.get_work_orders(week_start, week_end)
@@ -116,15 +78,13 @@ class CalendarSyncProcessor:
             try:
                 CustomOrderNumber = work_order["CustomOrderNumber"][6:]
                 order = QualerOrder(work_order)
-                order.status = self.process_order(order)
+                order.status = order.process_order(self.outlook)
                 if self.calendar_sync.tickCounters(order):
                     continue
 
             except ValueError:
-                self.calendar_sync.failure_counter += 1
                 self.calendar_sync.exceptions.append([CustomOrderNumber, traceback.format_exc()])
             except Exception as e:
-                self.calendar_sync.failure_counter += 1
                 self.calendar_sync.exceptions.append([CustomOrderNumber, str(e)])
 
 
@@ -193,6 +153,36 @@ class QualerOrder(dict):
         order.end_time = None
         order.is_all_day = False
         order.combine_date_and_time()
+
+    def process_order(order, outlook: Outlook, is_live=False):
+        """Function to process an order"""
+        order.CustomOrderNumber = int(order["CustomOrderNumber"][6:])
+        event_id = outlook.check(order["ServiceOrderId"], order["CustomOrderNumber"])
+        if order.get("RequestToDate") is None:
+            return None
+
+        request_to_date = parse_datetime(order["RequestToDate"]).date()
+        if request_to_date < dt.now().date():
+            return "Past"  # Skip the order if it has passed the RequestToDate
+
+        if order["OrderStatus"] == "Cancelled":
+            if event_id:
+                outlook.event.delete(event_id) if is_live else logging.debug(f"Would have deleted event for {order['CustomOrderNumber']} if live")
+                return "Cancelled"
+            else:
+                return "Skipped"  # Skip the cancelled order if it does not have an event in Outlook.
+
+        if event_id:
+            event_obj = outlook.event.lookup(event_id)
+            if (differing_keys := diff(event_obj, dict(order))):  # NOTE: May be able to use `order` instead of `dict(order)`
+                outlook.event.update(event_id, order, differing_keys == ['attendees']) if is_live else logging.debug(f"Would have updated event for {order['CustomOrderNumber']} if live")
+                return "Updated"
+            else:
+                logging.info(f"Event for {order['CustomOrderNumber']} is up to date")
+                return "Skipped"  # Skip if the changes to the order are irrelevant to the calendar event
+        else:
+            outlook.event.create(order) if is_live else logging.debug(f"Would have created event for {order['CustomOrderNumber']} if live")
+            return "Created"
 
     def combine_date_and_time(order):
         DateTimeUtils.combine_date_and_time(order)
@@ -290,11 +280,10 @@ if __name__ == "__main__":
         if week_end > stop_date:
             week_end = stop_date
 
-        pbar.update(1)  # Update the progress bar
+        pbar.update(1)
 
-        cSync.processor.loopOrders()  # Loop through the week's orders and process them
+        cSync.processor.loopOrders()
 
-        # Update the week start and week end dates for the next iteration
         week_start += timedelta(days=7)
         week_end = min(week_start + timedelta(days=7), stop_date)
 
