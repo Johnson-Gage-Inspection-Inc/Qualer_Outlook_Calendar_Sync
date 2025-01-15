@@ -1,6 +1,8 @@
 import requests
 import json
 import time
+import os
+
 LIVE = False  # Set to True to run the script in live mode, False to run in test mode
 
 ###########################################################################################################
@@ -40,8 +42,8 @@ def generate_token():
 
 
 # Qualer API configuration
-LOGIN_USER = "joohhnnny@yahoo.com"
-LOGIN_PASS = "jgiapi5920"
+LOGIN_USER = os.environ.get('QUALER_USER')
+LOGIN_PASS = os.environ.get('QUALER_PASSWORD')
 QUALER_API_ENDPOINT = "https://jgiquality.qualer.com/api"
 GENERATE_TOKEN = True  # While testing, set to true for first time use, then set to false and replace QUALER_API_KEY with the generated token
 if GENERATE_TOKEN:
