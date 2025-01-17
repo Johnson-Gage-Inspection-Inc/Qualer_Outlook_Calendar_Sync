@@ -21,7 +21,7 @@ This project synchronizes calendar events between Qualer and Outlook. It ensures
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/Qualer_Outlook_Calendar_Sync.git
+    git clone https://github.com/Johnson-Gage-Inspection-Inc/Qualer_Outlook_Calendar_Sync.git
     cd Qualer_Outlook_Calendar_Sync
     ```
 
@@ -33,8 +33,8 @@ This project synchronizes calendar events between Qualer and Outlook. It ensures
 3. Configure environment variables:
     - Create a `.env` file in the root directory with the following content:
         ```properties
-        QUALER_USER = "your_qualer_email"
-        QUALER_PASSWORD = "your_qualer_password"
+        QUALER_USER = your_qualer_email
+        QUALER_PASSWORD = your_qualer_password
         ```
 
 ## Usage
