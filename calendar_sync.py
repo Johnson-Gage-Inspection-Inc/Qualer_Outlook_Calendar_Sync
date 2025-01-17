@@ -3,14 +3,20 @@ from datetime import datetime as dt
 from datetime import time, timedelta
 import os
 import traceback
-
-import app.exceptions as ex
-import app.outlook as ol
-import app.qualer_api as q
+from dotenv import load_dotenv, find_dotenv
+env_path = find_dotenv()
+print(f".env file found at: {env_path}")
+load_dotenv(env_path)
 
 # Change the current working directory to the location of this file
 new_directory = os.path.dirname(os.path.abspath(__file__))
 os.chdir(new_directory)
+
+print("Current Working Directory:", os.getcwd())
+
+import app.exceptions as ex
+import app.outlook as ol
+import app.qualer_api as q
 
 ##########################################################################################################
 ########################################### Initial Variables ############################################
